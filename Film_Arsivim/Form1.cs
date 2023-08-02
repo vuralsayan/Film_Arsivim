@@ -32,5 +32,18 @@ namespace Film_Arsivim
         {
             Filmler();
         }
+
+        private void BtnKaydet_Click(object sender, EventArgs e)
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("INSERT INTO TBLFILMLER (AD,KATEGORI,LINK) VALUES (@P1,@P2,@P3)",baglanti);
+            komut.Parameters.AddWithValue("@P1",TxtFilmAd.Text);
+            komut.Parameters.AddWithValue("@P2", TxtKategori.Text);
+            komut.Parameters.AddWithValue("@P3", TxtLink.Text);
+            komut.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Film Eklendi","Bilgi",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            Filmler();
+        }
     }
 }
