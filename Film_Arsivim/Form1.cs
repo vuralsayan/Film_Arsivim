@@ -20,7 +20,7 @@ namespace Film_Arsivim
         }
 
         SqlConnection baglanti = new SqlConnection(@"Data Source=Vural\SQLEXPRESS;Initial Catalog=FilmArsivim;Integrated Security=True");
-        ChromiumWebBrowser tarayici;
+        private ChromiumWebBrowser tarayici; 
         void Filmler()
         {
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TBLFILMLER",baglanti); // Veritabanından verileri çekme
@@ -57,11 +57,17 @@ namespace Film_Arsivim
             TxtFilmAd.Text = dataGridView1.Rows[secilen].Cells[1].Value.ToString();
             TxtKategori.Text = dataGridView1.Rows[secilen].Cells[2].Value.ToString();
             TxtLink.Text = dataGridView1.Rows[secilen].Cells[3].Value.ToString();
-            
-            tarayici = new ChromiumWebBrowser(link); // Seçilen filmin linkini webbrowser'da açma
-            this.webBrowser1.Controls.Add(tarayici); // Webbrowser'ı forma ekleme
-            tarayici.Dock = DockStyle.Fill; // Webbrowser'ı forma tam ekran yapma
 
+            if (tarayici != null) // Webbrowser'ın boş olup olmadığını kontrol etme
+            {
+                tarayici.Load(link); 
+            }
+            else
+            {
+                tarayici = new ChromiumWebBrowser(link); // Seçilen filmin linkini webbrowser'da açma
+                this.webBrowser1.Controls.Add(tarayici); // Webbrowser'ı forma ekleme
+                tarayici.Dock = DockStyle.Fill;   // Webbrowser'ı forma tam ekran yapma
+            }
 
             //webBrowser1.Navigate(link); // Seçilen filmin linkini webbrowser'da açma - desteklenmiyor -
         }
