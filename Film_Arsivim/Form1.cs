@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using CefSharp.WinForms;
 
 namespace Film_Arsivim
 {
@@ -19,18 +20,19 @@ namespace Film_Arsivim
         }
 
         SqlConnection baglanti = new SqlConnection(@"Data Source=Vural\SQLEXPRESS;Initial Catalog=FilmArsivim;Integrated Security=True");
-
+        ChromiumWebBrowser tarayici;
         void Filmler()
         {
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TBLFILMLER",baglanti); // Veritabanından verileri çekme
             DataTable dt = new DataTable(); // Verileri tabloda gösterme
             da.Fill(dt); // Verileri tabloya doldurma
-            dataGridView1.DataSource = dt; // Verileri datagridview'e aktarma
+            dataGridView1.DataSource = dt; // Verileri datagridview'e aktarma    
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Filmler();
+            
         }
 
         private void BtnKaydet_Click(object sender, EventArgs e)
@@ -55,8 +57,13 @@ namespace Film_Arsivim
             TxtFilmAd.Text = dataGridView1.Rows[secilen].Cells[1].Value.ToString();
             TxtKategori.Text = dataGridView1.Rows[secilen].Cells[2].Value.ToString();
             TxtLink.Text = dataGridView1.Rows[secilen].Cells[3].Value.ToString();
+            
+            tarayici = new ChromiumWebBrowser(link); // Seçilen filmin linkini webbrowser'da açma
+            this.webBrowser1.Controls.Add(tarayici); // Webbrowser'ı forma ekleme
+            tarayici.Dock = DockStyle.Fill; // Webbrowser'ı forma tam ekran yapma
 
-            webBrowser1.Navigate(link); // Seçilen filmin linkini webbrowser'da açma
+
+            //webBrowser1.Navigate(link); // Seçilen filmin linkini webbrowser'da açma - desteklenmiyor -
         }
     }
 }
