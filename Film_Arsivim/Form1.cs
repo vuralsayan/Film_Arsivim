@@ -84,5 +84,40 @@ namespace Film_Arsivim
             MessageBox.Show("Bu program Vural Sayan tarafından 2.06.2023 tarihinde  yapılmıştır.","Bilgi",MessageBoxButtons.OK,MessageBoxIcon.Information);
             OpenLink();
         }
+
+        private void BtnCikis_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BtnRenkDegis_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            int rastgele = rnd.Next(1, 7); // 1 ile 7 arasında rastgele sayı üretme
+            switch (rastgele)
+            {
+                case 1:
+                    this.BackColor = Color.Red;
+                    break;
+                case 2:
+                    this.BackColor = Color.Blue;
+                    break;
+                case 3:
+                    this.BackColor = Color.Green;
+                    break;
+                case 4:
+                    this.BackColor = Color.Yellow;
+                    break;
+                case 5:
+                    this.BackColor = Color.Purple;
+                    break;
+                case 6:
+                    this.BackColor = Color.Orange;
+                    break;
+                case 7:
+                    this.BackColor = Color.Pink;
+                    break;
+            }
+        }
     }
 }
