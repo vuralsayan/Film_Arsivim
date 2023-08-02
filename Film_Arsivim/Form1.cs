@@ -71,5 +71,18 @@ namespace Film_Arsivim
 
             //webBrowser1.Navigate(link); // Seçilen filmin linkini webbrowser'da açma - desteklenmiyor -
         }
+
+        private void OpenLink()
+        {
+            string link = "https://www.linkedin.com/in/vural-sayan-79326a171/"; 
+
+            System.Diagnostics.Process.Start(link); // Linki varsayılan tarayıcıda açma
+        }
+
+        private void BtnHakkimizda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Bu program Vural Sayan tarafından 2.06.2023 tarihinde  yapılmıştır.","Bilgi",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            OpenLink();
+        }
     }
 }

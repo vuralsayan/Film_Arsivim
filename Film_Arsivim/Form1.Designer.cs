@@ -211,6 +211,7 @@
             this.BtnHakkimizda.TabIndex = 9;
             this.BtnHakkimizda.Text = "Hakkımızda";
             this.BtnHakkimizda.UseVisualStyleBackColor = true;
+            this.BtnHakkimizda.Click += new System.EventHandler(this.BtnHakkimizda_Click);
             // 
             // BtnRenkDegis
             // 
