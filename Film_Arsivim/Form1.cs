@@ -45,5 +45,14 @@ namespace Film_Arsivim
             MessageBox.Show("Film Eklendi","Bilgi",MessageBoxButtons.OK,MessageBoxIcon.Information);
             Filmler();
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Seçilen satırın verilerini textboxlara aktarma
+            int secilen = dataGridView1.SelectedCells[0].RowIndex;
+            TxtFilmAd.Text = dataGridView1.Rows[secilen].Cells[1].Value.ToString();
+            TxtKategori.Text = dataGridView1.Rows[secilen].Cells[2].Value.ToString();
+            TxtLink.Text = dataGridView1.Rows[secilen].Cells[3].Value.ToString();
+        }
     }
 }
