@@ -50,9 +50,13 @@ namespace Film_Arsivim
         {
             // Seçilen satırın verilerini textboxlara aktarma
             int secilen = dataGridView1.SelectedCells[0].RowIndex;
+            string link = dataGridView1.Rows[secilen].Cells[3].Value.ToString(); // Seçilen filmin linkini almak için
+
             TxtFilmAd.Text = dataGridView1.Rows[secilen].Cells[1].Value.ToString();
             TxtKategori.Text = dataGridView1.Rows[secilen].Cells[2].Value.ToString();
             TxtLink.Text = dataGridView1.Rows[secilen].Cells[3].Value.ToString();
+
+            webBrowser1.Navigate(link); // Seçilen filmin linkini webbrowser'da açma
         }
     }
 }
